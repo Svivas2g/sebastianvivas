@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sebastián Vivas — Portafolio</title>
+<meta name="description" content="Tres proyectos web: SYN, Spotia y Nexity.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0A0B">
+<style>
+:root{
+  --bg:#0A0A0B; --bg-2:#101013; --line:#232329; --line-2:#33333c;
+  --fg:#F4F4F5; --fg-2:#A1A1AA; --fg-3:#6E6E78; --accent:#F0705E;
+  --barra:52px;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ── Portada ─────────────────────────────────────────── */
+#portada{max-width:1240px;margin:0 auto;padding:clamp(40px,7vh,88px) clamp(20px,5vw,48px) 80px}
+.kicker{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-3);margin:0 0 18px
+}
+h1{
+  font-size:clamp(2.4rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.035em;
+  font-weight:600;margin:0 0 18px
+}
+.intro{
+  font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.55;color:var(--fg-2);
+  max-width:52ch;margin:0 0 clamp(40px,6vh,64px)
+}
+.rejilla{
+  display:grid;gap:clamp(18px,2.4vw,28px);
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+}
+.tarjeta{
+  display:flex;flex-direction:column;text-align:left;width:100%;
+  background:var(--bg-2);border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;transition:border-color .25s,transform .25s;
+}
+.tarjeta:hover,.tarjeta:focus-visible{border-color:var(--line-2);transform:translateY(-3px)}
+.tarjeta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lienzo{
+  position:relative;aspect-ratio:16/10;background:#000;overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.lienzo iframe{
+  position:absolute;top:0;left:0;width:1440px;height:900px;border:0;
+  transform-origin:top left;pointer-events:none;
+  opacity:0;transition:opacity .5s ease .15s;
+}
+.lienzo.lista iframe{opacity:1}
+.cargando{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-3);background:var(--bg-2);transition:opacity .4s;
+}
+.lienzo.lista .cargando{opacity:0}
+.cuerpo{padding:20px 22px 24px;display:flex;flex-direction:column;gap:9px;flex:1}
+.num{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em}
+.tarjeta h2{font-size:1.4rem;letter-spacing:-.02em;font-weight:600;margin:0}
+.tarjeta p{margin:0;font-size:.925rem;line-height:1.5;color:var(--fg-2)}
+.etiquetas{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:12px}
+.etiquetas span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--fg-3);
+  border:1px solid var(--line);border-radius:999px;padding:4px 9px;
+}
+.pie{
+  margin-top:clamp(48px,8vh,80px);padding-top:22px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;color:var(--fg-3);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
+}
+
+/* ── Visor ───────────────────────────────────────────── */
+#visor{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column}
+#visor[hidden]{display:none}
+.barra{
+  height:var(--barra);flex:0 0 auto;display:flex;align-items:center;gap:10px;
+  padding:0 12px;border-bottom:1px solid var(--line);background:var(--bg-2);
+}
+.volver{
+  display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:8px;
+  border:1px solid var(--line);font-size:13px;white-space:nowrap;transition:border-color .2s
+}
+.volver:hover{border-color:var(--line-2)}
+.titulo{
+  font-size:13.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;
+  padding-left:4px;margin-right:auto;display:flex;align-items:center;gap:9px
+}
+.titulo small{font-family:var(--mono);font-size:10.5px;font-weight:400;color:var(--fg-3);letter-spacing:.04em}
+.grupo{display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;padding:2px}
+.grupo button{
+  padding:5px 11px;border-radius:6px;font-size:12px;color:var(--fg-3);
+  white-space:nowrap;transition:background .18s,color .18s
+}
+.grupo button[aria-pressed="true"]{background:#26262e;color:var(--fg)}
+.grupo button:hover{color:var(--fg)}
+.externo{
+  padding:7px 12px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;
+  white-space:nowrap;text-decoration:none;transition:border-color .2s
+}
+.externo:hover{border-color:var(--line-2)}
+.escena{flex:1;min-height:0;background:#000;display:flex;justify-content:center;overflow:auto}
+.escena.movil{background:#141418;padding:22px 0}
+.escena iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+.escena.movil iframe{
+  width:390px;flex:0 0 390px;height:100%;max-height:844px;border-radius:22px;
+  border:1px solid var(--line-2);box-shadow:0 24px 60px rgba(0,0,0,.55)
+}
+@media (max-width:720px){
+  .titulo small,.externo{display:none}
+  .volver span{display:none}
+  .barra{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<main id="portada">
+  <p class="kicker">Sebastián Vivas · Portafolio</p>
+  <h1>Tres proyectos web</h1>
+  <p class="intro">
+    Cada uno se abre aquí mismo, funcionando: los menús, las animaciones, el cambio de
+    idioma y la navegación interna se pueden usar igual que en el sitio publicado.
+  </p>
+
+  <div class="rejilla" id="rejilla"></div>
+
+  <div class="pie">
+    <span>Local · Servido en HTTP</span>
+    <span id="anio"></span>
+  </div>
+</main>
+
+<section id="visor" hidden aria-label="Visor de proyecto">
+  <header class="barra">
+    <button class="volver" id="btn-volver" aria-label="Volver al portafolio">← <span>Portafolio</span></button>
+    <div class="titulo"><strong id="v-nombre"></strong><small id="v-nota"></small></div>
+    <div class="grupo" id="pestanas" role="group" aria-label="Vistas del proyecto"></div>
+    <div class="grupo" role="group" aria-label="Ancho de pantalla">
+      <button id="b-esc" aria-pressed="true">Escritorio</button>
+      <button id="b-mov" aria-pressed="false">Móvil</button>
+    </div>
+    <a class="externo" id="v-externo" target="_blank" rel="noopener">Abrir aparte ↗</a>
+  </header>
+  <div class="escena" id="escena"><iframe id="marco" title="Proyecto"></iframe></div>
+</section>
+
+<script>
+const PROYECTOS = [
+  {
+    id:'syn',
+    nombre:'SYN',
+    nota:'Smart Your Needs',
+    desc:'Sitio de la agencia: CRMs, software a medida, páginas web y automatización. Una sola página, bilingüe, con cinco animaciones dibujadas en canvas.',
+    tags:['Landing','ES / EN','Canvas','Responsive'],
+    vistas:[{et:'Sitio',ruta:'SYN/web/index.html'}]
+  },
+  {
+    id:'spotia',
+    nombre:'Spotia',
+    nota:'Spotia Makers',
+    desc:'Landing de la productora: cuatro frentes de producción contados en un scroll de paneles que se apilan, sobre oscuro y terracota.',
+    tags:['Landing','Scroll de paneles','Sistema de diseño'],
+    vistas:[
+      {et:'Spotia Makers', ruta:'Spotia/Landing/Spotia Makers.dc.html'},
+      {et:'Maqueta base',  ruta:'Spotia/Landing/Landing Page.dc.html'}
+    ]
+  },
+  {
+    id:'nexity',
+    nombre:'Nexity',
+    nota:'Toda tu empresa en una vista',
+    desc:'Producto de tablero por áreas. Desde la portada se entra a los cinco módulos —Dirección, Comercial, Financiera, Operaciones y Talento— sin salir del visor.',
+    tags:['5 módulos','Tema claro / oscuro','Producto'],
+    vistas:[{et:'Sitio',ruta:'Nexity/v3 (publicada)/index.html'}]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const rejilla = $('#rejilla'), visor = $('#visor'), marco = $('#marco'),
+      escena = $('#escena'), pestanas = $('#pestanas');
+let actual = null, vistaIdx = 0;
+
+/* ── Portada: tarjetas con miniatura en vivo ────────── */
+PROYECTOS.forEach((p, i) => {
+  const b = document.createElement('button');
+  b.className = 'tarjeta';
+  b.type = 'button';
+  b.innerHTML =
+    '<div class="lienzo" data-src="' + encodeURI(p.vistas[0].ruta) + '">' +
+      '<div class="cargando">Cargando ' + p.nombre + '</div>' +
+    '</div>' +
+    '<div class="cuerpo">' +
+      '<span class="num">' + String(i + 1).padStart(2, '0') + ' / ' + p.nota + '</span>' +
+      '<h2>' + p.nombre + '</h2>' +
+      '<p>' + p.desc + '</p>' +
+      '<div class="etiquetas">' + p.tags.map(t => '<span>' + t + '</span>').join('') + '</div>' +
+    '</div>';
+  b.addEventListener('click', () => { location.hash = '#/' + p.id; });
+  rejilla.appendChild(b);
+});
+
+/* La miniatura es el proyecto real a escala. Se monta solo cuando la tarjeta
+   entra en pantalla: tres sitios con animaciones arrancando a la vez
+   calientan el equipo sin necesidad. */
+const lienzos = [...document.querySelectorAll('.lienzo')];
+const escalar = el => {
+  const f = el.querySelector('iframe');
+  if (f) f.style.transform = 'scale(' + (el.clientWidth / 1440) + ')';
+};
+const ro = new ResizeObserver(es => es.forEach(e => escalar(e.target)));
+const io = new IntersectionObserver((es, obs) => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    obs.unobserve(el);
+    const f = document.createElement('iframe');
+    f.setAttribute('scrolling', 'no');
+    f.setAttribute('tabindex', '-1');
+    f.setAttribute('aria-hidden', 'true');
+    f.setAttribute('loading', 'lazy');
+    f.addEventListener('load', () => el.classList.add('lista'));
+    el.appendChild(f);
+    escalar(el);
+    ro.observe(el);
+    f.src = el.dataset.src;
+  });
+}, {rootMargin: '250px'});
+lienzos.forEach(el => io.observe(el));
+
+const apagarMiniaturas = on =>
+  lienzos.forEach(el => {
+    const f = el.querySelector('iframe');
+    if (f) f.style.visibility = on ? 'visible' : 'hidden';
+  });
+
+/* ── Visor ──────────────────────────────────────────── */
+function montar(p, idx) {
+  actual = p; vistaIdx = idx;
+  const v = p.vistas[idx], url = encodeURI(v.ruta);
+  $('#v-nombre').textContent = p.nombre;
+  $('#v-nota').textContent = p.vistas.length > 1 ? v.et : p.nota;
+  $('#v-externo').href = url;
+
+  pestanas.innerHTML = '';
+  pestanas.hidden = p.vistas.length < 2;
+  if (p.vistas.length > 1) {
+    p.vistas.forEach((vi, k) => {
+      const b = document.createElement('button');
+      b.textContent = vi.et;
+      b.setAttribute('aria-pressed', String(k === idx));
+      b.addEventListener('click', () => { location.hash = '#/' + p.id + '/' + k; });
+      pestanas.appendChild(b);
+    });
+  }
+  if (marco.getAttribute('src') !== url) marco.src = url;
+  marco.title = p.nombre + ' — ' + v.et;
+}
+
+function abrir(p, idx) {
+  document.title = p.nombre + ' — Portafolio Sebastián Vivas';
+  visor.hidden = false;
+  $('#portada').style.display = 'none';
+  apagarMiniaturas(false);
+  montar(p, idx);
+}
+function cerrar() {
+  document.title = 'Sebastián Vivas — Portafolio';
+  visor.hidden = true;
+  marco.removeAttribute('src');
+  $('#portada').style.display = '';
+  actual = null;
+  apagarMiniaturas(true);
+}
+
+function ancho(movil) {
+  escena.classList.toggle('movil', movil);
+  $('#b-esc').setAttribute('aria-pressed', String(!movil));
+  $('#b-mov').setAttribute('aria-pressed', String(movil));
+}
+$('#b-esc').addEventListener('click', () => ancho(false));
+$('#b-mov').addEventListener('click', () => ancho(true));
+$('#btn-volver').addEventListener('click', () => { location.hash = ''; });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !visor.hidden) location.hash = ''; });
+
+/* Ruta en el hash: #/nexity o #/spotia/1. Así se puede compartir
+   el enlace de un proyecto concreto, no solo el del portafolio. */
+function ruta() {
+  const partes = (location.hash || '').replace(/^#\/?/, '').split('/');
+  const p = PROYECTOS.find(x => x.id === partes[0]);
+  const k = partes[1];
+  if (!p) { cerrar(); return; }
+  const idx = Math.min(Math.max(parseInt(k, 10) || 0, 0), p.vistas.length - 1);
+  if (actual === p) { ancho(escena.classList.contains('movil')); montar(p, idx); }
+  else abrir(p, idx);
+}
+addEventListener('hashchange', ruta);
+$('#anio').textContent = new Date().getFullYear();
+ruta();
+</script>
+</body>
+</html>

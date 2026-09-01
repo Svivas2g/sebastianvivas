@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-page:#171717; --panel:#1C1C1C; --panel-alt:#101010;
+  --text-hi:#F1ECE3; --text-mid:#8A8680; --accent:#B94E32;
+  --petrol:#176B70; --mostaza:#C79A3B; --cian:#00D1C8;
+  --radius-xl:32px; --radius-pill:999px;
+  --font-display:'Avenir Next LT Pro','Avenir Next',Avenir,'Jost',system-ui,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --page-pad:48px; --page-pad-wide:clamp(24px,7vw,140px); --hero-h:85vh; --stack-gap:64px;
+  --nav-bg:rgba(23,23,23,.62); --nav-brd:rgba(241,236,227,.16);
+  --nav-fg:#F1ECE3; --nav-cta-bg:#B94E32; --nav-cta-fg:#F1ECE3;
+  --desktop:flex; --mobile:none; --grid-2:1fr 1fr;
+  --panel-pos:sticky; --panel-minh:100vh; --panel-pad:clamp(28px,4vw,64px);
+  --media-order:2; --media-h:100%; --tabs-wrap:wrap; --tabs-scroll:visible;
+  /* editorial set */
+  --bg-light:#111111; --ink:#F1ECE3; --rule:rgba(0,209,200,.22);
+  --dot-1:#B94E32; --dot-2:#176B70; --dot-3:#C79A3B; --dot-4:#00D1C8;
+  --tbl-2:45% 1fr; --num-pos:sticky; --num-size:300px; --num-stroke:3px;
+  --row-minh:90vh; --gal-h:620px; --illo:block; --num-top:180px;
+  --type-base:clamp(3rem,11vw,11rem); --vid-w0:38;
+}
+@media (max-width:1024px){ :root{ --page-pad:24px; --grid-2:1fr; --stack-gap:32px; --panel-pos:relative; --panel-minh:auto; --media-order:0; --media-h:40vh; --tbl-2:1fr; --num-pos:relative; --num-size:140px; --num-stroke:2px; --num-top:0px; --row-minh:auto; --gal-h:380px; } }
+@media (max-width:768px){ :root{ --desktop:none; --mobile:flex; --page-pad:16px; --hero-h:78vh; --tabs-wrap:nowrap; --tabs-scroll:auto; --illo:none; --type-base:clamp(2rem,13vw,4rem); --vid-w0:80; } }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--ink);font-family:var(--font-display);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent)}
+.is-on-dark{--nav-bg:rgba(23,23,23,.72);--nav-brd:rgba(0,209,200,.34);--nav-fg:#F1ECE3;--nav-cta-bg:#B94E32;--nav-cta-fg:#F1ECE3}
+.lnk:hover .ul,.lnk:focus-visible .ul{--ux:1}
+.mlnk:hover .ul,.mlnk:focus-visible .ul{--ux:1}
+[role="tablist"]::-webkit-scrollbar{display:none}
+[data-gallery]::-webkit-scrollbar{display:none}
+.tab:hover{--tb:#F1ECE3}
+.cta:hover .dot,.cta:focus-visible .dot{transform:scale(1.14)}
+.cta:hover .plus,.cta:focus-visible .plus{transform:rotate(90deg)}
+.lm:hover .arw,.lm:focus-visible .arw{transform:translateX(6px)}
+.disc:hover{opacity:.6}
+@keyframes spotia-ticker{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important}.ticker{animation:none !important;transform:none !important}}
+</style>
+</helmet>
+<div id="top" style="background:var(--bg-page);overflow-x:clip">
+
+  <nav class="pill" ref="{{ pillRef }}" aria-label="Principal" style="position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:90;width:max-content;white-space:nowrap;display:var(--desktop);align-items:center;gap:2px;padding:6px 6px 6px 20px;border-radius:var(--radius-pill);background:var(--nav-bg);border:1px solid var(--nav-brd);backdrop-filter:blur(12px) saturate(150%);-webkit-backdrop-filter:blur(12px) saturate(150%);box-shadow:0 10px 34px rgba(10,15,28,.10);transition:background .35s ease,border-color .35s ease">
+    <a class="lnk" href="#ventaja" style="position:relative;padding:10px 14px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--nav-fg);opacity:.68;transition:opacity .25s ease,color .35s ease" style-hover="opacity:1">Ventaja<span class="ul" style="position:absolute;left:14px;right:14px;bottom:7px;height:1.5px;background:currentColor;transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="lnk" href="#services" style="position:relative;padding:10px 14px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--nav-fg);opacity:.68;transition:opacity .25s ease,color .35s ease" style-hover="opacity:1">Producción<span class="ul" style="position:absolute;left:14px;right:14px;bottom:7px;height:1.5px;background:currentColor;transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="lnk" href="#practices" style="position:relative;padding:10px 14px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--nav-fg);opacity:.68;transition:opacity .25s ease,color .35s ease" style-hover="opacity:1">Proceso<span class="ul" style="position:absolute;left:14px;right:14px;bottom:7px;height:1.5px;background:currentColor;transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="lnk" href="#closing" style="position:relative;padding:10px 14px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--nav-fg);opacity:.68;transition:opacity .25s ease,color .35s ease" style-hover="opacity:1">Reel<span class="ul" style="position:absolute;left:14px;right:14px;bottom:7px;height:1.5px;background:currentColor;transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="lnk" href="#contact" style="position:relative;padding:10px 14px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--nav-fg);opacity:.68;transition:opacity .25s ease,color .35s ease" style-hover="opacity:1">Contacto<span class="ul" style="position:absolute;left:14px;right:14px;bottom:7px;height:1.5px;background:currentColor;transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a href="#contact" style="margin-left:10px;padding:12px 20px;border-radius:18px;background:var(--nav-cta-bg);color:var(--nav-cta-fg);font-size:15px;font-weight:500;letter-spacing:-.01em;transition:background .35s ease,color .35s ease,transform .25s ease" style-hover="transform:translateY(-1px)">Cotiza tu proyecto</a>
+  </nav>
+
+  <div ref="{{ mobileRef }}" style="position:fixed;top:16px;left:16px;right:16px;z-index:90;display:var(--mobile);align-items:center;justify-content:space-between;padding:9px 9px 9px 18px;border-radius:var(--radius-pill);background:var(--nav-bg);border:1px solid var(--nav-brd);backdrop-filter:blur(12px) saturate(150%);-webkit-backdrop-filter:blur(12px) saturate(150%);transition:background .35s ease,border-color .35s ease">
+    <img src="assets/spotia-isotipo.png" alt="Spotia Makers" style="height:28px;width:auto;display:block" />
+    <button type="button" ref="{{ burgerRef }}" onClick="{{ onToggleMenu }}" aria-expanded="false" aria-controls="mobile-sheet" aria-label="Abrir menú" style="width:44px;height:44px;flex:none;border:0;border-radius:999px;background:var(--nav-cta-bg);color:var(--nav-cta-fg);display:grid;place-items:center;cursor:pointer">
+      <span style="display:flex;flex-direction:column;gap:5px">
+        <span style="display:block;width:17px;height:1.5px;background:currentColor"></span>
+        <span style="display:block;width:17px;height:1.5px;background:currentColor"></span>
+      </span>
+    </button>
+  </div>
+
+  <div id="mobile-sheet" ref="{{ sheetRef }}" role="dialog" aria-modal="true" aria-label="Menú" style="position:fixed;inset:0;z-index:95;background:var(--panel);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:var(--page-pad)">
+    <button type="button" onClick="{{ onCloseMenu }}" aria-label="Cerrar menú" style="position:absolute;top:20px;right:16px;width:44px;height:44px;border:1px solid rgba(241,236,227,.24);border-radius:999px;background:transparent;color:var(--text-hi);font-size:22px;line-height:1;cursor:pointer">×</button>
+    <a class="mlnk" href="#ventaja" onClick="{{ onCloseMenu }}" style="position:relative;align-self:flex-start;padding:8px 0;font-size:clamp(2rem,11vw,3rem);font-weight:600;letter-spacing:-.035em;line-height:1.05;color:var(--text-hi)">Ventaja<span class="ul" style="position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--accent);transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="mlnk" href="#services" onClick="{{ onCloseMenu }}" style="position:relative;align-self:flex-start;padding:8px 0;font-size:clamp(2rem,11vw,3rem);font-weight:600;letter-spacing:-.035em;line-height:1.05;color:var(--text-hi)">Producción<span class="ul" style="position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--accent);transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="mlnk" href="#practices" onClick="{{ onCloseMenu }}" style="position:relative;align-self:flex-start;padding:8px 0;font-size:clamp(2rem,11vw,3rem);font-weight:600;letter-spacing:-.035em;line-height:1.05;color:var(--text-hi)">Proceso<span class="ul" style="position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--accent);transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a class="mlnk" href="#closing" onClick="{{ onCloseMenu }}" style="position:relative;align-self:flex-start;padding:8px 0;font-size:clamp(2rem,11vw,3rem);font-weight:600;letter-spacing:-.035em;line-height:1.05;color:var(--text-hi)">Reel<span class="ul" style="position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--accent);transform:scaleX(var(--ux,0));transition:transform .32s cubic-bezier(.2,.7,.2,1)"></span></a>
+    <a href="#contact" onClick="{{ onCloseMenu }}" style="margin-top:24px;align-self:flex-start;padding:16px 26px;border-radius:18px;background:var(--text-hi);color:var(--panel);font-size:17px;font-weight:500">Cotiza tu proyecto</a>
+  </div>
+
+  <header style="display:var(--desktop);align-items:flex-end;justify-content:space-between;gap:24px;padding:clamp(104px,10vh,132px) var(--page-pad) clamp(18px,2vw,28px)">
+    <a href="#top" style="display:flex;align-items:center"><img src="assets/spotia-logo.png" alt="Spotia Makers" style="height:clamp(104px,10vw,140px);width:auto;object-fit:contain;display:block;margin-left:-14px" /></a>
+  </header>
+
+  <section data-nav="dark" style="padding:0 var(--page-pad) clamp(28px,4vw,56px)">
+    <div ref="{{ cardRef }}" style="position:relative;min-height:var(--hero-h);height:auto;border-radius:var(--radius-xl);overflow:hidden;background:var(--panel-alt);transform-origin:50% 0;will-change:transform,border-radius">
+      <div ref="{{ mediaRef }}" role="img" aria-label="Espacio para el reel de Spotia" style="position:absolute;inset:-12% 0;background-color:var(--panel-alt);background-image:repeating-linear-gradient(115deg,rgba(241,236,227,.055) 0 14px,rgba(241,236,227,0) 14px 28px);will-change:transform"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.62) 0%,rgba(10,10,10,.2) 46%,rgba(10,10,10,.8) 100%)"></div>
+      <div style="position:relative;min-height:var(--hero-h);display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,30px);padding:clamp(26px,5vw,74px) clamp(26px,5vw,74px) clamp(78px,9vw,110px)">
+        <p style="margin:0;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mid)">Ideas que cobran vida</p>
+        <h1 style="margin:0;max-width:16ch;font-size:clamp(3rem,9vw,9rem);line-height:.95;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Mientras tu competencia sigue grabando, tu marca ya está en pauta.</h1>
+        <p style="margin:0;max-width:46ch;font-size:clamp(16px,1.35vw,21px);line-height:1.5;color:var(--text-hi);opacity:.88">Producimos los creativos de tu marca con IA: UGC, spots para TV, vía pública, hiperrealista y animación. Se cobra por paquete de piezas entregadas, no por días de grabación.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:4px">
+          <a href="#contact" style="padding:17px 30px;border-radius:var(--radius-pill);background:var(--accent);color:var(--text-hi);font-size:16px;font-weight:500;letter-spacing:-.01em;transition:transform .25s ease" style-hover="transform:translateY(-2px)">Cotiza tu proyecto</a>
+          <a href="#closing" style="padding:17px 30px;border-radius:var(--radius-pill);border:1px solid rgba(241,236,227,.34);color:var(--text-hi);font-size:16px;font-weight:500;letter-spacing:-.01em;transition:border-color .25s ease" style-hover="border-color:var(--cian)">Ver el reel</a>
+        </div>
+      </div>
+      <p style="position:absolute;left:clamp(26px,5vw,74px);bottom:clamp(22px,3vw,40px);margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ reel Spotia — 2560×1440 mp4 o still ]</p>
+      <p style="position:absolute;right:clamp(26px,5vw,74px);bottom:clamp(22px,3vw,40px);margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">Baja ↓</p>
+    </div>
+  </section>
+
+  <div data-nav="dark" aria-label="Formatos que producimos" style="overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:clamp(14px,1.6vw,22px) 0;background:var(--bg-page)">
+    <div class="ticker" style="display:flex;width:max-content;animation:spotia-ticker 42s linear infinite"><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">UGC con avatar<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Voz en off<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Clips verticales 9:16<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Spot para TV<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Vallas y pantallas<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Cine<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Hiperrealista<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Motion 2D<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Render 3D<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Técnica mixta<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">UGC con avatar<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Voz en off<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Clips verticales 9:16<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Spot para TV<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Vallas y pantallas<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Cine<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Hiperrealista<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Motion 2D<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Render 3D<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span><span style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(15px,1.5vw,22px);font-weight:500;letter-spacing:-.015em;color:var(--text-hi);white-space:nowrap">Técnica mixta<span aria-hidden="true" style="width:7px;height:7px;flex:none;border-radius:999px;background:var(--cian)"></span></span></div>
+  </div>
+
+  <section id="ventaja" data-nav="dark" style="padding:clamp(76px,11vh,150px) var(--page-pad);display:flex;flex-direction:column;gap:clamp(34px,5vw,64px)">
+    <div style="display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);align-items:start">
+      <p style="margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(241,236,227,.7)"><span style="display:block;width:44px;height:3px;background:var(--cian);margin-bottom:14px"></span>La ventaja / 01</p>
+      <p style="margin:0;max-width:30ch;font-size:clamp(1.6rem,3.4vw,3rem);line-height:1.14;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Tu marca ya tiene la reputación. Lo que no tiene es el volumen de creativos que el mercado te está exigiendo esta semana.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:var(--grid-2);gap:clamp(18px,2.4vw,32px)">
+      <div style="display:flex;flex-direction:column;gap:22px;padding:clamp(26px,3vw,44px);border:1px solid rgba(241,236,227,.12);border-radius:var(--radius-xl);background:var(--panel)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span aria-hidden="true" style="width:14px;height:14px;flex:none;border-radius:999px;background:var(--text-mid)"></span>
+          <h3 style="margin:0;font-size:clamp(1.1rem,1.7vw,1.5rem);font-weight:500;letter-spacing:-.02em;color:var(--text-mid)">Productora tradicional</h3>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(241,236,227,.1);font-size:16px;line-height:1.45;color:var(--text-mid)">Una grabación por campaña</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(241,236,227,.1);font-size:16px;line-height:1.45;color:var(--text-mid)">Tres piezas y sus cortes</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(241,236,227,.1);font-size:16px;line-height:1.45;color:var(--text-mid)">Semanas de agenda, locación y equipo</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(241,236,227,.1);font-size:16px;line-height:1.45;color:var(--text-mid)">El presupuesto se va en logística</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;padding:clamp(26px,3vw,44px);border:1px solid rgba(0,209,200,.4);border-radius:var(--radius-xl);background:linear-gradient(180deg,rgba(185,78,50,.16),rgba(28,28,28,.92))">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span aria-hidden="true" style="width:14px;height:14px;flex:none;border-radius:999px;background:var(--cian)"></span>
+          <h3 style="margin:0;font-size:clamp(1.1rem,1.7vw,1.5rem);font-weight:500;letter-spacing:-.02em;color:var(--text-hi)">Spotia Makers</h3>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(0,209,200,.22);font-size:16px;line-height:1.45;color:var(--text-hi)">Un brief por campaña</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(0,209,200,.22);font-size:16px;line-height:1.45;color:var(--text-hi)">Decenas de variantes del mismo concepto</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(0,209,200,.22);font-size:16px;line-height:1.45;color:var(--text-hi)">Primeras versiones en días</p>
+          <p style="margin:0;padding:15px 0;border-top:1px solid rgba(0,209,200,.22);font-size:16px;line-height:1.45;color:var(--text-hi)">El presupuesto se va en piezas</p>
+        </div>
+        <a href="#contact" style="align-self:flex-start;margin-top:4px;padding:14px 24px;border-radius:var(--radius-pill);background:var(--accent);color:var(--text-hi);font-size:15px;font-weight:500;transition:transform .25s ease" style-hover="transform:translateY(-2px)">Cotiza tu campaña</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" data-nav="dark" style="margin:0 var(--page-pad);border-radius:var(--radius-xl);background:var(--panel);color:var(--text-mid);padding:clamp(48px,7vw,104px) clamp(26px,4vw,74px);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap)">
+    <h2 style="margin:0;max-width:16ch;font-size:clamp(2rem,4vw,3.6rem);line-height:1.02;font-weight:600;letter-spacing:-.04em;color:var(--text-hi)">Más piezas, más rápido, sin bajar la calidad.</h2>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;gap:22px;padding:22px 0;border-top:1px solid rgba(241,236,227,.14)">
+        <span style="font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;color:var(--accent);padding-top:6px">01</span>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(1.15rem,1.7vw,1.5rem);font-weight:500;letter-spacing:-.02em;color:var(--text-hi)">Volumen</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.55">Una productora entrega tres piezas por grabación. Nosotros entregamos decenas de opciones con el mismo presupuesto.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:22px;padding:22px 0;border-top:1px solid rgba(241,236,227,.14)">
+        <span style="font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;color:var(--accent);padding-top:6px">02</span>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(1.15rem,1.7vw,1.5rem);font-weight:500;letter-spacing:-.02em;color:var(--text-hi)">Velocidad</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.55">Del brief a las primeras versiones en días. Tu campaña sale mientras la competencia todavía cotiza locación.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:22px;padding:22px 0;border-top:1px solid rgba(241,236,227,.14);border-bottom:1px solid rgba(241,236,227,.14)">
+        <span style="font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;color:var(--accent);padding-top:6px">03</span>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(1.15rem,1.7vw,1.5rem);font-weight:500;letter-spacing:-.02em;color:var(--text-hi)">Calidad</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.55">Acabado cinematográfico para TV, cine y vía pública. Volumen no significa piezas hechas a la carrera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <header data-nav="light" style="padding:clamp(64px,10vh,140px) var(--page-pad) clamp(36px,6vh,72px);display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px)">
+    <p style="margin:0;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,227,.82)"><span style="display:block;width:44px;height:3px;background:var(--cian);margin-bottom:14px"></span>Qué producimos / 02</p>
+    <h1 style="margin:0;max-width:22ch;font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.02;font-weight:600;letter-spacing:-.045em;text-wrap:balance">Cuatro frentes de producción. Una sola campaña, todos los canales.</h1>
+  </header>
+
+  <section id="services" class="stack" data-nav="dark" style="position:relative">
+
+    <article data-panel="1" style="position:var(--panel-pos);top:0;z-index:1;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">01</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-1" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Redes sociales</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-1" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-1-0" aria-controls="p-1-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:var(--tab-fg,#F1ECE3);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">UGC con avatar</button>
+            <button class="tab" type="button" role="tab" id="t-1-1" aria-controls="p-1-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">UGC con voz en off</button>
+            <button class="tab" type="button" role="tab" id="t-1-2" aria-controls="p-1-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Clips verticales</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-1-0" aria-labelledby="t-1-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Rostros que hablan de tu marca en vertical, listos para pautar mañana. Sin casting, sin agenda, sin excusas.</p>
+            </div>
+            <div role="tabpanel" id="p-1-1" aria-labelledby="t-1-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Locución que suena a tu marca sobre imagen propia. Varias versiones del mismo mensaje para descubrir cuál convierte.</p>
+            </div>
+            <div role="tabpanel" id="p-1-2" aria-labelledby="t-1-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Cortes para Meta, Instagram y TikTok en el volumen que el algoritmo pide.</p>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ UGC avatar · 9:16 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ voz en off · 9:16 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ clip vertical · 9:16 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="2" style="--accent:var(--petrol);position:var(--panel-pos);top:0;z-index:2;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">02</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-2" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Cine, TV y vía pública</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-2" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-2-0" aria-controls="p-2-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:var(--tab-fg,#F1ECE3);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Comercial de marca</button>
+            <button class="tab" type="button" role="tab" id="t-2-1" aria-controls="p-2-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Spot para TV</button>
+            <button class="tab" type="button" role="tab" id="t-2-2" aria-controls="p-2-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Vallas y pantallas</button>
+            <button class="tab" type="button" role="tab" id="t-2-3" aria-controls="p-2-3" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Contenido para cine</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-2-0" aria-labelledby="t-2-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Acabado cinematográfico para tu campaña grande, sin semanas de grabación de por medio.</p>
+            </div>
+            <div role="tabpanel" id="p-2-1" aria-labelledby="t-2-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Versiones de 30, 20 y 15 segundos del mismo concepto, entregadas y aprobadas juntas.</p>
+            </div>
+            <div role="tabpanel" id="p-2-2" aria-labelledby="t-2-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Alta resolución para vía pública y pantallas, adaptada al formato de cada medio.</p>
+            </div>
+            <div role="tabpanel" id="p-2-3" aria-labelledby="t-2-3" data-tabitem="3" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Imagen de sala: contraste, sonido y ritmo pensados para pantalla grande.</p>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ comercial de marca · 16:9 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ spot TV 30s · 16:9 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ valla · 3:4 ]</span>
+          </div>
+          <div data-tabitem="3" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ pieza para cine · 21:9 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="3" style="--accent:var(--mostaza);--tab-fg:#171717;position:var(--panel-pos);top:0;z-index:3;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">03</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-3" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Video hiperrealista</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-3" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-3-0" aria-controls="p-3-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:var(--tab-fg,#F1ECE3);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Producto y personas</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-3-0" aria-labelledby="t-3-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Producto, personas y ambientes que resisten el primer plano. Realismo, no un truco de plantilla.</p>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ hiperrealista · 4:5 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="4" style="--accent:var(--cian);--tab-fg:#171717;position:var(--panel-pos);top:0;z-index:4;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">04</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-4" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Animación y motion</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-4" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-4-0" aria-controls="p-4-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:var(--tab-fg,#F1ECE3);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Motion 2D</button>
+            <button class="tab" type="button" role="tab" id="t-4-1" aria-controls="p-4-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Render 3D</button>
+            <button class="tab" type="button" role="tab" id="t-4-2" aria-controls="p-4-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(241,236,227,.3));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Técnica mixta</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-4-0" aria-labelledby="t-4-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Motion gráfico para explicar rápido lo que tu producto hace mejor que la competencia.</p>
+            </div>
+            <div role="tabpanel" id="p-4-1" aria-labelledby="t-4-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Renders y sets imposibles de grabar: tu producto en cualquier mundo, sin locación.</p>
+            </div>
+            <div role="tabpanel" id="p-4-2" aria-labelledby="t-4-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Imagen real, animación y 3D en la misma pieza cuando el concepto lo pide.</p>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ motion 2D · 16:9 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ render 3D · 4:5 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(241,236,227,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(241,236,227,.82)">[ mixta · 9:16 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+  </section>
+
+
+  <section id="practices" data-nav="light" style="background:var(--bg-light);color:var(--ink);padding:clamp(80px,12vh,180px) 0">
+    <div style="padding:0 var(--page-pad-wide);display:flex;flex-direction:column;gap:clamp(24px,3vw,44px)">
+      <button class="disc" type="button" data-disclosure="true" aria-expanded="true" aria-controls="d-intro" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+        <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(45deg)">
+        <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+        <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+      </span><span>(Cómo lo hacemos)</span>
+      </button>
+      <div id="d-intro" data-disclosure-body="true" style="display:grid;grid-template-rows:1fr;transition:grid-template-rows .4s ease">
+        <div style="overflow:hidden;min-height:0">
+          <h2 style="margin:0;max-width:40vw;font-size:clamp(1.8rem,3.6vw,3.4rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Cuatro pasos, sin sala de espera: entras con un brief y sales con una campaña lista para pautar. Tú apruebas, nosotros producimos.</h2>
+        </div>
+      </div>
+    </div>
+
+    <div id="work" data-gallery="true" style="margin-top:clamp(32px,5vw,72px);overflow:hidden;cursor:grab">
+      <div data-gallery-track="true" style="display:flex;gap:16px;padding:0 var(--page-pad);width:max-content;will-change:transform">
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ spot de marca · 16:9 ]</span>
+      </div>
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ pieza vertical · 3:4 ]</span>
+      </div>
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ valla · 4:3 ]</span>
+      </div>
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ comercial TV · 16:9 ]</span>
+      </div>
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ UGC avatar · 3:4 ]</span>
+      </div>
+      <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ render 3D · 4:3 ]</span>
+      </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(72px,11vh,150px);padding:0 var(--page-pad-wide)">
+      <div style="position:sticky;top:88px;z-index:20;background:var(--bg-light);display:grid;grid-template-columns:var(--tbl-2);gap:var(--stack-gap);padding:14px 0;border-bottom:1px solid var(--rule)">
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">Paso</span>
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">Etapa</span>
+      </div>
+    <div data-row style="display:grid;grid-template-columns:var(--tbl-2);gap:var(--stack-gap);min-height:var(--row-minh);padding:clamp(36px,5vw,80px) 0;border-bottom:1px solid var(--rule)">
+      <div style="position:var(--num-pos);top:var(--num-top);align-self:start;line-height:.76">
+        <span aria-hidden="true" style="display:block;font-size:var(--num-size);font-weight:700;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:var(--num-stroke) var(--ink)">01</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);min-width:0">
+        <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="d-01" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+          <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+        <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+        <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+      </span><span>(Brief)</span>
+        </button>
+        <h3 style="display:flex;align-items:center;gap:16px;margin:0;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;font-weight:500;letter-spacing:-.035em">
+          <span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:999px;background:var(--dot-1)"></span>Brief de marca
+        </h3>
+        <div style="display:flex;flex-direction:column;border-bottom:1px solid var(--rule)">
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Objetivo</span><span style="text-align:right">Qué debe mover la campaña</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Marca</span><span style="text-align:right">Manual, tono y no-negociables</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Formatos</span><span style="text-align:right">Canales y cantidad de piezas</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Referencias</span><span style="text-align:right">Lo que sí y lo que nunca</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Plazo</span><span style="text-align:right">Fecha en que sale la pauta</span>
+          </div>
+        </div>
+        <div id="d-01" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+          <div style="overflow:hidden;min-height:0">
+            <p style="margin:0;max-width:52ch;padding-top:8px;font-size:15.5px;line-height:1.55;color:var(--text-mid)">Sin brief no arranca la producción. Es la única tarea que te pedimos completa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--rule);padding:clamp(20px,3vw,40px) 0 clamp(28px,4vw,56px)">
+      <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="g-01" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+        <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+          <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+          <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+        </span>
+        <span>(Cómo lo hacemos)</span>
+      </button>
+      <div id="g-01" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+        <div style="overflow:hidden;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);padding-top:clamp(22px,3vw,38px)">
+            <h4 style="margin:0;max-width:min(40vw,720px);font-size:clamp(1.4rem,2.6vw,2.4rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Lo que pedimos en el brief y lo que devolvemos. Sin reuniones para llenar agenda.</h4>
+            <div data-gallery="true" style="overflow:hidden;cursor:grab;margin-left:calc(var(--page-pad-wide) * -1);margin-right:calc(var(--page-pad-wide) * -1)">
+              <div data-gallery-track="true" style="display:flex;gap:16px;padding:0 var(--page-pad-wide);width:max-content;will-change:transform">
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ brief de marca · 3:4 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ referencias · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ tono y no-negociables · 16:9 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ mapa de canales · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ calendario de pauta · 3:4 ]</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-row style="display:grid;grid-template-columns:var(--tbl-2);gap:var(--stack-gap);min-height:var(--row-minh);padding:clamp(36px,5vw,80px) 0;border-bottom:1px solid var(--rule)">
+      <div style="position:var(--num-pos);top:var(--num-top);align-self:start;line-height:.76">
+        <span aria-hidden="true" style="display:block;font-size:var(--num-size);font-weight:700;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:var(--num-stroke) var(--ink)">02</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);min-width:0">
+        <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="d-02" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+          <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+        <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+        <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+      </span><span>(Producción)</span>
+        </button>
+        <h3 style="display:flex;align-items:center;gap:16px;margin:0;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;font-weight:500;letter-spacing:-.035em">
+          <span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:999px;background:var(--dot-2)"></span>Producción con IA
+        </h3>
+        <div style="display:flex;flex-direction:column;border-bottom:1px solid var(--rule)">
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Guion</span><span style="text-align:right">Estructura y hook por pieza</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Casting</span><span style="text-align:right">Avatares y voces por audiencia</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Generación</span><span style="text-align:right">Variantes en volumen por concepto</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Sonido</span><span style="text-align:right">Locución, música y mezcla</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Iteración</span><span style="text-align:right">Ajustes sobre lo aprobado</span>
+          </div>
+        </div>
+        <div id="d-02" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+          <div style="overflow:hidden;min-height:0">
+            <p style="margin:0;max-width:52ch;padding-top:8px;font-size:15.5px;line-height:1.55;color:var(--text-mid)">Un concepto aprobado se convierte en decenas de variantes. Tú eliges con cuáles salir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--rule);padding:clamp(20px,3vw,40px) 0 clamp(28px,4vw,56px)">
+      <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="g-02" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+        <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+          <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+          <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+        </span>
+        <span>(Cómo lo hacemos)</span>
+      </button>
+      <div id="g-02" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+        <div style="overflow:hidden;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);padding-top:clamp(22px,3vw,38px)">
+            <h4 style="margin:0;max-width:min(40vw,720px);font-size:clamp(1.4rem,2.6vw,2.4rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Un concepto, muchas variantes: así se ve una campaña en plena producción.</h4>
+            <div data-gallery="true" style="overflow:hidden;cursor:grab;margin-left:calc(var(--page-pad-wide) * -1);margin-right:calc(var(--page-pad-wide) * -1)">
+              <div data-gallery-track="true" style="display:flex;gap:16px;padding:0 var(--page-pad-wide);width:max-content;will-change:transform">
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ guion por pieza · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ variantes por concepto · 16:9 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ avatar y voz · 3:4 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ mezcla de sonido · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ versiones por canal · 16:9 ]</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-row style="display:grid;grid-template-columns:var(--tbl-2);gap:var(--stack-gap);min-height:var(--row-minh);padding:clamp(36px,5vw,80px) 0;border-bottom:1px solid var(--rule)">
+      <div style="position:var(--num-pos);top:var(--num-top);align-self:start;line-height:.76">
+        <span aria-hidden="true" style="display:block;font-size:var(--num-size);font-weight:700;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:var(--num-stroke) var(--ink)">03</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);min-width:0">
+        <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="d-03" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+          <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+        <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+        <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+      </span><span>(Control)</span>
+        </button>
+        <h3 style="display:flex;align-items:center;gap:16px;margin:0;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;font-weight:500;letter-spacing:-.035em">
+          <span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:999px;background:var(--dot-3)"></span>Control de calidad
+        </h3>
+        <div style="display:flex;flex-direction:column;border-bottom:1px solid var(--rule)">
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Marca</span><span style="text-align:right">Logo, color y tipografía revisados</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Realismo</span><span style="text-align:right">Manos, texto y continuidad</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Legal</span><span style="text-align:right">Claims y condiciones visibles</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Formato</span><span style="text-align:right">Cortes 9:16, 1:1 y 16:9</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Aprobación</span><span style="text-align:right">Una ronda de ajustes incluida</span>
+          </div>
+        </div>
+        <div id="d-03" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+          <div style="overflow:hidden;min-height:0">
+            <p style="margin:0;max-width:52ch;padding-top:8px;font-size:15.5px;line-height:1.55;color:var(--text-mid)">Nada sale sin que un humano lo vea completo. La IA produce; el criterio es nuestro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--rule);padding:clamp(20px,3vw,40px) 0 clamp(28px,4vw,56px)">
+      <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="g-03" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+        <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+          <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+          <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+        </span>
+        <span>(Cómo lo hacemos)</span>
+      </button>
+      <div id="g-03" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+        <div style="overflow:hidden;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);padding-top:clamp(22px,3vw,38px)">
+            <h4 style="margin:0;max-width:min(40vw,720px);font-size:clamp(1.4rem,2.6vw,2.4rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Lo que revisamos antes de que una pieza salga a pauta.</h4>
+            <div data-gallery="true" style="overflow:hidden;cursor:grab;margin-left:calc(var(--page-pad-wide) * -1);margin-right:calc(var(--page-pad-wide) * -1)">
+              <div data-gallery-track="true" style="display:flex;gap:16px;padding:0 var(--page-pad-wide);width:max-content;will-change:transform">
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ revisión de marca · 16:9 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ realismo y detalle · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ claims y legal · 3:4 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ cortes por formato · 16:9 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ ronda de ajustes · 4:3 ]</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-row style="display:grid;grid-template-columns:var(--tbl-2);gap:var(--stack-gap);min-height:var(--row-minh);padding:clamp(36px,5vw,80px) 0;border-bottom:1px solid var(--rule)">
+      <div style="position:var(--num-pos);top:var(--num-top);align-self:start;line-height:.76">
+        <span aria-hidden="true" style="display:block;font-size:var(--num-size);font-weight:700;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:var(--num-stroke) var(--ink)">04</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);min-width:0">
+        <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="d-04" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+          <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+        <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+        <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+      </span><span>(Entrega)</span>
+        </button>
+        <h3 style="display:flex;align-items:center;gap:16px;margin:0;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;font-weight:500;letter-spacing:-.035em">
+          <span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:999px;background:var(--dot-4)"></span>Entrega
+        </h3>
+        <div style="display:flex;flex-direction:column;border-bottom:1px solid var(--rule)">
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Master</span><span style="text-align:right">Archivos listos para publicar</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Variantes</span><span style="text-align:right">Versiones por canal y audiencia</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Copies</span><span style="text-align:right">Textos y subtítulos incluidos</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Métrica</span><span style="text-align:right">Te decimos qué mirar cuando pautes</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.4">
+            <span style="opacity:.78">Siguiente campaña</span><span style="text-align:right">Qué renovar el próximo mes</span>
+          </div>
+        </div>
+        <div id="d-04" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+          <div style="overflow:hidden;min-height:0">
+            <p style="margin:0;max-width:52ch;padding-top:8px;font-size:15.5px;line-height:1.55;color:var(--text-mid)">Lo que funcione en pauta alimenta la campaña del mes siguiente. Se renueva sin arrancar de cero.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--rule);padding:clamp(20px,3vw,40px) 0 clamp(28px,4vw,56px)">
+      <button class="disc" type="button" data-disclosure="true" aria-expanded="false" aria-controls="g-04" style="align-self:flex-start;display:inline-flex;align-items:center;gap:11px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);font-family:inherit;font-size:14px;letter-spacing:-.01em;transition:opacity .25s ease">
+        <span class="pmark" style="position:relative;display:block;width:14px;height:14px;flex:none;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(0deg)">
+          <span style="position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor"></span>
+          <span style="position:absolute;top:0;bottom:0;left:6px;width:2px;background:currentColor"></span>
+        </span>
+        <span>(Cómo lo hacemos)</span>
+      </button>
+      <div id="g-04" data-disclosure-body="true" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease">
+        <div style="overflow:hidden;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);padding-top:clamp(22px,3vw,38px)">
+            <h4 style="margin:0;max-width:min(40vw,720px);font-size:clamp(1.4rem,2.6vw,2.4rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;text-wrap:pretty">Lo que recibes el día de la entrega, listo para subir.</h4>
+            <div data-gallery="true" style="overflow:hidden;cursor:grab;margin-left:calc(var(--page-pad-wide) * -1);margin-right:calc(var(--page-pad-wide) * -1)">
+              <div data-gallery-track="true" style="display:flex;gap:16px;padding:0 var(--page-pad-wide);width:max-content;will-change:transform">
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ master de entrega · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ variantes por audiencia · 16:9 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ copies y subtítulos · 3:4 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ qué mirar en pauta · 4:3 ]</span>
+              </div>
+              <div style="flex:none;height:var(--gal-h);aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background-color:#1A1A1A;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.05) 0 10px,rgba(59,59,59,0) 10px 20px);display:flex;align-items:flex-end;padding:16px;user-select:none">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.82)">[ siguiente campaña · 16:9 ]</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="closing" data-nav="light" style="position:relative;background:var(--bg-light);color:var(--ink);padding:clamp(90px,15vh,210px) var(--page-pad-wide);overflow:hidden">
+    <div style="position:relative;z-index:2;max-width:1500px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(2px,.8vw,12px)">
+      <div data-reveal="true" style="display:flex;flex-wrap:wrap;align-items:baseline;column-gap:clamp(12px,2vw,34px);opacity:0;transform:translateY(40px)">
+        <span style="font-size:var(--type-base);font-weight:700;line-height:.85;letter-spacing:-.05em;text-transform:uppercase">Quedarse quieto</span>
+        <span style="font-size:calc(var(--type-base)*.24);font-weight:500;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">es el anuncio</span>
+        <span style="font-size:var(--type-base);font-weight:700;line-height:.85;letter-spacing:-.05em;text-transform:uppercase">más caro.</span>
+      </div>
+      <div data-reveal="true" style="display:flex;flex-wrap:wrap;align-items:baseline;column-gap:clamp(12px,2vw,34px);opacity:0;transform:translateY(40px)">
+        <span style="font-size:calc(var(--type-base)*.3);font-weight:300;line-height:1;letter-spacing:-.01em;color:var(--cian)">Tu competencia</span>
+        <span style="font-size:var(--type-base);font-weight:700;line-height:.85;letter-spacing:-.05em;text-transform:uppercase">ya está pautando.</span>
+      </div>
+      <div data-reveal="true" style="display:flex;flex-wrap:wrap;align-items:baseline;column-gap:clamp(12px,2vw,34px);opacity:0;transform:translateY(40px)">
+        <span style="font-size:var(--type-base);font-weight:700;line-height:.85;letter-spacing:-.05em;text-transform:uppercase">Da el salto</span>
+        <span style="font-size:calc(var(--type-base)*.24);font-weight:500;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">ahora,</span>
+        <span style="font-size:calc(var(--type-base)*.3);font-weight:300;line-height:1;letter-spacing:-.01em;color:var(--cian)">no mañana.</span>
+      </div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;top:clamp(40px,6vh,90px);right:clamp(20px,4vw,90px);transform:rotate(3deg);width:clamp(150px,16vw,260px);aspect-ratio:3/4;display:var(--illo);align-items:flex-end;padding:12px;border:1px solid var(--rule);border-radius:4px;background-color:#141414;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 6px,rgba(59,59,59,0) 6px 12px)">
+      <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:rgba(241,236,227,.82)">[ frame de campaña 01 ]</span>
+    </div>
+    <div aria-hidden="true" style="position:absolute;bottom:clamp(30px,5vh,70px);left:clamp(20px,4vw,80px);transform:rotate(-4deg);width:clamp(150px,16vw,260px);aspect-ratio:3/4;display:var(--illo);align-items:flex-end;padding:12px;border:1px solid var(--rule);border-radius:4px;background-color:#141414;background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 6px,rgba(59,59,59,0) 6px 12px)">
+      <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:rgba(241,236,227,.82)">[ frame de campaña 02 ]</span>
+    </div>
+  </section>
+
+  <div data-video-wrap="true" data-nav="light" style="position:relative;height:250vh;background:var(--bg-light)">
+    <div style="position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden">
+      <div data-video-stage="true" style="position:relative;width:38vw;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background-color:var(--panel);background-image:repeating-linear-gradient(135deg,rgba(241,236,227,.06) 0 10px,rgba(241,236,227,0) 10px 20px);will-change:width">
+        <video data-video="true" autoplay loop muted playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent"></video>
+        <span style="position:absolute;left:20px;bottom:18px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:rgba(241,236,227,.82)">[ reel Spotia — 16:9 mp4 + poster ]</span>
+        <button data-sound="true" type="button" aria-pressed="false" aria-label="Activar el sonido del reel" style="position:absolute;top:18px;right:18px;width:56px;height:56px;border:0;border-radius:14px;background:var(--accent);cursor:pointer;display:grid;place-items:center">
+          <span style="display:flex;align-items:center;gap:3px;height:22px">
+            <span style="display:block;width:3px;height:8px;border-radius:2px;background:#F1ECE3"></span>
+            <span style="display:block;width:3px;height:16px;border-radius:2px;background:#F1ECE3"></span>
+            <span style="display:block;width:3px;height:22px;border-radius:2px;background:#F1ECE3"></span>
+            <span style="display:block;width:3px;height:12px;border-radius:2px;background:#F1ECE3"></span>
+          </span>
+          <span data-strike="true" style="position:absolute;left:13px;right:13px;top:27px;height:2px;background:#F1ECE3;transform:rotate(-42deg)"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <a href="#contact" data-nav="dark" aria-label="Cotiza tu campaña" style="display:block;overflow:hidden;border-top:1px solid var(--rule);padding:clamp(20px,2.6vw,34px) 0;background:var(--bg-page)">
+    <span class="ticker" style="display:flex;width:max-content;animation:spotia-ticker 30s linear infinite"><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--text-hi)">Cotiza tu campaña —</span><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--accent)">Ideas que cobran vida —</span><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--text-hi)">Da el salto —</span><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--text-hi)">Cotiza tu campaña —</span><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--accent)">Ideas que cobran vida —</span><span style="padding-right:clamp(26px,3vw,54px);font-size:clamp(1.6rem,4vw,3.4rem);font-weight:600;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;color:var(--text-hi)">Da el salto —</span></span>
+  </a>
+
+  <section data-nav="dark" style="background:var(--bg-page);padding:clamp(72px,11vh,150px) var(--page-pad);display:flex;flex-direction:column;align-items:center;gap:clamp(20px,2.6vw,34px);text-align:center">
+    <p style="margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cian)">Último llamado</p>
+    <h2 style="margin:0;max-width:24ch;font-size:clamp(2.1rem,5.2vw,4.4rem);line-height:1.02;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Tu próxima campaña puede estar al aire en semanas, no en meses.</h2>
+    <p style="margin:0;max-width:52ch;font-size:clamp(15px,1.2vw,18px);line-height:1.5;color:var(--text-mid)">Trabajamos con pocas marcas a la vez para no bajar la calidad.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
+      <a href="#contact" style="padding:18px 32px;border-radius:var(--radius-pill);background:var(--accent);color:var(--text-hi);font-size:16px;font-weight:500;transition:transform .25s ease" style-hover="transform:translateY(-2px)">Cotiza tu proyecto</a>
+      <a href="#contact" style="padding:18px 32px;border-radius:var(--radius-pill);border:1px solid rgba(241,236,227,.34);color:var(--text-hi);font-size:16px;font-weight:500;transition:border-color .25s ease" style-hover="border-color:var(--cian)">Agenda una llamada</a>
+    </div>
+    <p style="margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(241,236,227,.6)">Se cobra por paquete de piezas entregadas · sin costos de grabación</p>
+  </section>
+
+  <footer id="contact" data-nav="dark" style="position:relative;z-index:6;background:var(--panel);color:var(--text-mid);padding:clamp(72px,11vh,150px) var(--page-pad);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);align-items:end">
+    <div style="display:flex;flex-direction:column;gap:clamp(20px,3vw,34px)">
+      <img src="assets/spotia-logo-slogan.png" alt="Spotia Makers — Ideas que cobran vida" style="align-self:flex-start;width:clamp(190px,22vw,320px);height:auto;object-fit:contain;display:block;margin-left:-14px" />
+      <h2 style="margin:0;max-width:20ch;font-size:clamp(2rem,4.4vw,4rem);line-height:1.02;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Da el salto antes que tu competencia.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <a href="#contact" style="font-size:clamp(1.1rem,1.8vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--text-hi)">hola@spotiamakers.com →</a>
+      <p style="margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,227,.55)">Spotia Makers — Ideas que cobran vida</p>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B94E32&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#B94E32&quot;,&quot;#176B70&quot;,&quot;#C79A3B&quot;,&quot;#00D1C8&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;cornerRadius&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:32,&quot;min&quot;:0,&quot;max&quot;:72,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;heroHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:85,&quot;min&quot;:60,&quot;max&quot;:100,&quot;unit&quot;:&quot;vh&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;cardShrink&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:10,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll motion&quot;},&quot;parallaxDepth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll motion&quot;},&quot;stickyStack&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Stack motion&quot;},&quot;dimStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.65,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Stack motion&quot;},&quot;panelShrink&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:0,&quot;max&quot;:8,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Stack motion&quot;},&quot;videoStart&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:38,&quot;min&quot;:20,&quot;max&quot;:80,&quot;step&quot;:1,&quot;unit&quot;:&quot;vw&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll motion&quot;}}">
+class Component extends DCLogic {
+  active = new Map();
+  componentDidMount(){
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.prototype.slice.call(document.querySelectorAll(s));
+    this.rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.reduced = this.rm.matches;
+    this.raf = null; this.open = false; this.dark = null; this.dragOffset = 0; this.drag = null;
+    this.panels = $$('[data-panel]');
+    this.galleries = $$('[data-gallery]');
+    this.galleries.forEach((g) => { g._track = g.querySelector('[data-gallery-track]'); g._dx = 0; });
+    this.videoWrap = $('[data-video-wrap]'); this.stage = $('[data-video-stage]');
+    this.video = $('[data-video]'); this.strike = $('[data-strike]');
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(this.tick); };
+    this.onResize = () => { this.measure(); this.observe(); this.onScroll(); };
+    this.onKey = (e) => { if (e.key === 'Escape' && this.open) this.setMenu(false); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    this.panels.forEach((p) => this.initTabs(p));
+    this.initDisclosures(); this.initGallery(); this.initReveal(); this.initVideo();
+    this.measure(); this.applyTheme(); this.observe(); this.tick();
+  }
+  componentDidUpdate(){ this.applyTheme(); this.applyDisclosures(); this.measure(); this.onScroll(); }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    if (this.io) this.io.disconnect();
+    if (this.vio) this.vio.disconnect();
+    if (this.raf) cancelAnimationFrame(this.raf);
+    document.body.style.overflow = '';
+  }
+  measure(){
+    const cs = getComputedStyle(document.documentElement);
+    this.vidW0 = parseFloat(cs.getPropertyValue('--vid-w0')) || 38;
+  }
+  applyTheme(){
+    const s = document.documentElement.style, p = this.props || {};
+    if (p.accent) s.setProperty('--accent', p.accent);
+    if (p.cornerRadius != null) s.setProperty('--radius-xl', p.cornerRadius + 'px');
+    if (p.heroHeight != null) s.setProperty('--hero-h', p.heroHeight + 'vh');
+    if (p.videoStart != null) s.setProperty('--vid-w0', String(p.videoStart));
+    const off = p.stickyStack === false;
+    (this.panels || []).forEach((el) => { el.style.position = off ? 'relative' : 'var(--panel-pos)'; });
+    (this.panels || []).forEach((el) => { this.setActive(el, this.active.get(el) || 0, false); });
+  }
+  tick = () => {
+    this.raf = null;
+    const p = this.props || {};
+    const vh = window.innerHeight || 1;
+    const y = window.scrollY || window.pageYOffset || 0;
+    const reduced = this.reduced;
+    // hero card
+    const t = Math.max(0, Math.min(1, y / (vh * 0.85)));
+    const shrink = (p.cardShrink != null ? p.cardShrink : 4) / 100;
+    const depth = p.parallaxDepth != null ? p.parallaxDepth : 8;
+    const base = p.cornerRadius != null ? p.cornerRadius : 32;
+    if (this.cardEl){
+      this.cardEl.style.transform = reduced ? 'none' : 'scale(' + (1 - shrink * t).toFixed(4) + ')';
+      this.cardEl.style.borderRadius = reduced ? base + 'px' : (base + 24 * t).toFixed(1) + 'px';
+    }
+    if (this.mediaEl) this.mediaEl.style.transform = reduced ? 'none' : 'translate3d(0,' + (-depth * t).toFixed(2) + '%,0)';
+    // stacked panels
+    const dim = p.dimStrength != null ? p.dimStrength : 0.65;
+    const pShrink = (p.panelShrink != null ? p.panelShrink : 3) / 100;
+    const live = p.stickyStack !== false && window.innerWidth > 1024 && !reduced;
+    (this.panels || []).forEach((panel, i) => {
+      const next = this.panels[i + 1];
+      let prog = 0;
+      if (next && live){
+        const r = next.getBoundingClientRect();
+        prog = Math.max(0, Math.min(1, (vh - r.top) / vh));
+      }
+      const ov = panel.querySelector('[data-dim]');
+      if (ov) ov.style.opacity = (prog * dim).toFixed(3);
+      panel.style.transform = prog > 0 ? 'scale(' + (1 - pShrink * prog).toFixed(4) + ')' : '';
+    });
+    // horizontal galleries
+    if (!reduced){
+      (this.galleries || []).forEach((g) => {
+        const tr = g._track;
+        if (!tr || !g.clientWidth) return;
+        const r = g.getBoundingClientRect();
+        const max = Math.max(0, tr.scrollWidth - g.clientWidth);
+        const gp = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+        const x = Math.max(0, Math.min(max, gp * max + g._dx));
+        tr.style.transform = 'translate3d(' + (-x).toFixed(1) + 'px,0,0)';
+      });
+    }
+    // expanding video
+    if (this.stage && this.videoWrap){
+      const r = this.videoWrap.getBoundingClientRect();
+      const span = Math.max(1, r.height - vh);
+      let vp = reduced ? 1 : Math.max(0, Math.min(1, -r.top / span));
+      const e = vp < 0.5 ? 2 * vp * vp : 1 - Math.pow(-2 * vp + 2, 2) / 2;
+      const w0 = this.vidW0 || 38;
+      this.stage.style.width = (w0 + (96 - w0) * e).toFixed(2) + 'vw';
+      this.stage.style.borderRadius = (12 * (1 - e)).toFixed(1) + 'px';
+    }
+  };
+  observe(){
+    if (this.io) this.io.disconnect();
+    const h = window.innerHeight || 800;
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) this.setNav(e.target.getAttribute('data-nav') === 'dark'); });
+    }, { rootMargin: '-40px 0px -' + Math.max(0, h - 44) + 'px 0px', threshold: 0 });
+    document.querySelectorAll('[data-nav]').forEach((s) => this.io.observe(s));
+  }
+  setNav(dark){
+    if (this.dark === dark) return;
+    this.dark = dark;
+    [this.pillEl, this.mobileEl].forEach((el) => { if (el) el.classList.toggle('is-on-dark', dark); });
+  }
+  setMenu(open){
+    const el = this.sheetEl; if (!el) return;
+    this.open = open;
+    el.style.opacity = open ? '1' : '0';
+    el.style.visibility = open ? 'visible' : 'hidden';
+    el.style.pointerEvents = open ? 'auto' : 'none';
+    el.style.transform = open ? 'none' : 'translateY(-8px)';
+    if (this.burgerEl){
+      this.burgerEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+      this.burgerEl.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    }
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  discState = {};
+  initDisclosures(){
+    Array.prototype.slice.call(document.querySelectorAll('[data-disclosure]')).forEach((btn) => {
+      const id = btn.getAttribute('aria-controls');
+      if (!id) return;
+      if (!(id in this.discState)) this.discState[id] = btn.getAttribute('aria-expanded') === 'true';
+      btn.addEventListener('click', () => this.setDisclosure(id, !this.discState[id], true));
+      this.setDisclosure(id, this.discState[id], false);
+    });
+  }
+  setDisclosure(id, open, animate){
+    this.discState[id] = open;
+    const btn = document.querySelector('[data-disclosure][aria-controls="' + id + '"]');
+    if (btn){
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      const m = btn.querySelector('.pmark');
+      if (m) m.style.transform = open ? 'rotate(45deg)' : 'rotate(0deg)';
+    }
+    const body = document.getElementById(id);
+    if (!body) return;
+    const inner = body.firstElementChild;
+    body.style.display = 'block';
+    body.style.gridTemplateRows = '';
+    body.style.overflow = 'hidden';
+    if (!animate || this.reduced){
+      body.style.transition = 'none';
+      body.style.height = open ? 'auto' : '0px';
+      this.onScroll();
+      return;
+    }
+    body.style.transition = 'height .42s cubic-bezier(.2,.7,.2,1)';
+    body.style.height = body.offsetHeight + 'px';
+    void body.offsetHeight;
+    body.style.height = (open && inner ? inner.scrollHeight : 0) + 'px';
+    clearTimeout(body._t);
+    body._t = setTimeout(() => {
+      if (this.discState[id]) body.style.height = 'auto';
+      this.onScroll();
+    }, 460);
+  }
+  applyDisclosures(){
+    Object.keys(this.discState).forEach((id) => this.setDisclosure(id, this.discState[id], false));
+  }
+  initGallery(){
+    (this.galleries || []).forEach((g) => {
+      const tr = g._track;
+      if (!tr) return;
+      if (this.reduced){
+        g.style.overflowX = 'auto';
+        g.style.scrollSnapType = 'x mandatory';
+        g.style.scrollbarWidth = 'none';
+        tr.style.transform = 'none';
+        Array.prototype.slice.call(tr.children).forEach((c) => { c.style.scrollSnapAlign = 'center'; });
+        return;
+      }
+      const clampDrag = () => {
+        const max = Math.max(0, tr.scrollWidth - g.clientWidth);
+        g._dx = Math.max(-max, Math.min(max, g._dx));
+      };
+      g.addEventListener('pointerdown', (e) => {
+        g._drag = { x: e.clientX, o: g._dx };
+        g.style.cursor = 'grabbing';
+        if (g.setPointerCapture) g.setPointerCapture(e.pointerId);
+      });
+      g.addEventListener('pointermove', (e) => {
+        if (!g._drag) return;
+        g._dx = g._drag.o - (e.clientX - g._drag.x);
+        clampDrag(); this.onScroll();
+      });
+      const end = () => { g._drag = null; g.style.cursor = 'grab'; };
+      g.addEventListener('pointerup', end);
+      g.addEventListener('pointercancel', end);
+      g.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)){
+          e.preventDefault();
+          g._dx += e.deltaX;
+          clampDrag(); this.onScroll();
+        }
+      }, { passive: false });
+      g.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+  }
+  initReveal(){
+    const items = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if (!items.length) return;
+    if (this.reduced){
+      items.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      return;
+    }
+    items.forEach((el, i) => {
+      el.style.transition = 'opacity .7s ease ' + (i * 80) + 'ms, transform .7s cubic-bezier(.2,.7,.2,1) ' + (i * 80) + 'ms';
+    });
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting){
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    items.forEach((el) => io.observe(el));
+  }
+  initVideo(){
+    const v = this.video;
+    const btn = document.querySelector('[data-sound]');
+    if (btn){
+      btn.addEventListener('click', () => {
+        const on = btn.getAttribute('aria-pressed') !== 'true';
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? 'Silenciar el reel' : 'Activar el sonido del reel');
+        if (this.strike) this.strike.style.opacity = on ? '0' : '1';
+        if (v){ v.muted = !on; if (on && v.currentSrc) { const q = v.play(); if (q && q.catch) q.catch(() => {}); } }
+      });
+    }
+    if (!v) return;
+    this.vio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!v.currentSrc) return;
+        if (e.isIntersecting){ const q = v.play(); if (q && q.catch) q.catch(() => {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.15 });
+    this.vio.observe(v);
+  }
+  setActive(panel, idx, focus){
+    const tabs = Array.prototype.slice.call(panel.querySelectorAll('[role="tab"]'));
+    const items = Array.prototype.slice.call(panel.querySelectorAll('[data-tabitem]'));
+    this.active.set(panel, idx);
+    tabs.forEach((t, j) => {
+      const on = j === idx;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      t.style.background = on ? 'var(--accent)' : 'transparent';
+      t.style.color = on ? 'var(--tab-fg,#F1ECE3)' : 'var(--text-mid)';
+      t.style.borderColor = on ? 'var(--accent)' : 'var(--tb,rgba(241,236,227,.3))';
+    });
+    items.forEach((el) => {
+      const on = Number(el.getAttribute('data-tabitem')) === idx;
+      el.style.opacity = on ? '1' : '0';
+      el.style.transform = on ? 'none' : 'translateY(8px)';
+      el.style.pointerEvents = on ? 'auto' : 'none';
+      if (el.getAttribute('role') === 'tabpanel'){
+        el.setAttribute('aria-hidden', on ? 'false' : 'true');
+        el.inert = !on;
+      }
+    });
+    if (focus && tabs[idx]) tabs[idx].focus({ preventScroll: true });
+  }
+  initTabs(panel){
+    const tabs = Array.prototype.slice.call(panel.querySelectorAll('[role="tab"]'));
+    tabs.forEach((t, j) => {
+      t.addEventListener('click', (e) => { e.preventDefault(); this.setActive(panel, j, false); });
+      t.addEventListener('keydown', (e) => {
+        let n = -1;
+        if (e.key === 'ArrowRight') n = (j + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (j - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        if (n >= 0){ e.preventDefault(); this.setActive(panel, n, true); }
+      });
+    });
+    this.setActive(panel, 0, false);
+  }
+  renderVals(){
+    return {
+      pillRef: (el) => { this.pillEl = el; },
+      mobileRef: (el) => { this.mobileEl = el; },
+      sheetRef: (el) => { this.sheetEl = el; },
+      burgerRef: (el) => { this.burgerEl = el; },
+      cardRef: (el) => { this.cardEl = el; },
+      mediaRef: (el) => { this.mediaEl = el; },
+      onToggleMenu: () => this.setMenu(!this.open),
+      onCloseMenu: () => this.setMenu(false)
+    };
+  }
+}
+</script>
+</body>
+</html>

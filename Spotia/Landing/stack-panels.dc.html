@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-page:#FFFFFF; --panel:#0A0F1C; --panel-alt:#12324A;
+  --text-hi:#F2F2F2; --text-mid:#B9BEC7; --accent:#F0705E; --ink:#0A0F1C;
+  --radius-xl:32px; --radius-pill:999px;
+  --font-display:'Outfit',system-ui,-apple-system,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --page-pad:48px; --stack-gap:64px; --grid-2:1fr 1fr;
+  --panel-pos:sticky; --panel-minh:100vh; --panel-pad:clamp(28px,4vw,64px);
+  --media-order:2; --media-h:100%;
+  --tabs-wrap:wrap; --tabs-scroll:visible;
+}
+@media (max-width:1024px){ :root{ --page-pad:24px; --grid-2:1fr; --stack-gap:32px; --panel-pos:relative; --panel-minh:auto; --media-order:0; --media-h:40vh; } }
+@media (max-width:768px){ :root{ --page-pad:16px; --tabs-wrap:nowrap; --tabs-scroll:auto; } }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--ink);font-family:var(--font-display);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent)}
+[role="tablist"]::-webkit-scrollbar{display:none}
+.tab:hover{--tb:#F2F2F2}
+.cta:hover .dot,.cta:focus-visible .dot{transform:scale(1.14)}
+.cta:hover .plus,.cta:focus-visible .plus{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important}}
+</style>
+</helmet>
+<div style="background:var(--bg-page);overflow-x:clip">
+
+  <header data-nav="light" style="padding:clamp(64px,10vh,140px) var(--page-pad) clamp(36px,6vh,72px);display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px)">
+    <p style="margin:0;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(10,15,28,.5)">Services / 01 — 04</p>
+    <h1 style="margin:0;max-width:22ch;font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.02;font-weight:600;letter-spacing:-.045em;text-wrap:balance">Four ways in, one team behind them.</h1>
+  </header>
+
+  <section class="stack" style="position:relative">
+
+    <article data-panel="1" style="position:var(--panel-pos);top:0;z-index:1;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">01</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-1" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Brand &amp; Creative</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-1" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-1-0" aria-controls="p-1-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:#FFFFFF;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Branding</button>
+            <button class="tab" type="button" role="tab" id="t-1-1" aria-controls="p-1-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Creative Design</button>
+            <button class="tab" type="button" role="tab" id="t-1-2" aria-controls="p-1-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Copywriting</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-1-0" aria-labelledby="t-1-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Positioning, identity and the rules that keep it consistent — built so every team can apply it without asking us first.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Branding</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-1-1" aria-labelledby="t-1-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Campaign concepts and art direction that carry one idea across print, film, social and everything in between.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Creative Design</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-1-2" aria-labelledby="t-1-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">A voice that sounds like you on the page: naming, taglines, product copy and the long-form that does the convincing.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Copywriting</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ identity system — 4:5 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ campaign art direction — 4:5 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ editorial spread — 4:5 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#05070C;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="2" style="position:var(--panel-pos);top:0;z-index:2;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">02</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-2" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Websites</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-2" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-2-0" aria-controls="p-2-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:#FFFFFF;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Website Design &amp; Development</button>
+            <button class="tab" type="button" role="tab" id="t-2-1" aria-controls="p-2-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Ecommerce</button>
+            <button class="tab" type="button" role="tab" id="t-2-2" aria-controls="p-2-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Platforms &amp; Web Apps</button>
+            <button class="tab" type="button" role="tab" id="t-2-3" aria-controls="p-2-3" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">SEO</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-2-0" aria-labelledby="t-2-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Design, build and launch — fast, accessible sites that hold up under real traffic and real content teams.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Website Design &amp; Development</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-2-1" aria-labelledby="t-2-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Storefronts tuned for the checkout: merchandising, product pages and the small frictions that cost you orders.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Ecommerce</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-2-2" aria-labelledby="t-2-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Portals, tools and dashboards designed around the job to be done, then engineered to stay maintainable.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Platforms &amp; Web Apps</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-2-3" aria-labelledby="t-2-3" data-tabitem="3" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Technical fixes, content structure and the search-intent work that compounds month after month.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore SEO</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ site build — 4:5 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ storefront — 4:5 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ product UI — 4:5 ]</span>
+          </div>
+          <div data-tabitem="3" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ search report — 4:5 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#05070C;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="3" style="position:var(--panel-pos);top:0;z-index:3;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">03</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-3" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Strategic Marketing</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-3" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-3-0" aria-controls="p-3-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:#FFFFFF;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Strategic Marketing</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-3-0" aria-labelledby="t-3-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Where to play and how to win: audience, message, channel mix and a plan your team can actually run.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Strategic Marketing</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ planning session — 4:5 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#05070C;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+    <article data-panel="4" style="position:var(--panel-pos);top:0;z-index:4;min-height:var(--panel-minh);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow:hidden;background:var(--panel);transform-origin:50% 0;will-change:transform">
+      <div style="position:relative;z-index:1;min-height:var(--panel-minh);display:grid;grid-template-columns:var(--grid-2);gap:var(--stack-gap);padding:var(--panel-pad);align-items:center">
+        <div style="order:1;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px);min-width:0">
+          <span aria-hidden="true" style="font-family:var(--font-mono);font-size:clamp(38px,4.2vw,66px);line-height:1;letter-spacing:-.04em;color:var(--text-mid);opacity:.6">04</span>
+          <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+            <h2 id="h-4" style="margin:0;font-size:clamp(2.5rem,4.4vw,5rem);line-height:1;font-weight:600;letter-spacing:-.045em;color:var(--text-hi);text-wrap:balance">Content &amp; Digital</h2>
+            <span aria-hidden="true" style="width:40px;height:3px;flex:none;background:var(--accent);margin-bottom:.3em"></span>
+          </div>
+          <div role="tablist" aria-labelledby="h-4" style="display:flex;gap:10px;flex-wrap:var(--tabs-wrap);overflow-x:var(--tabs-scroll);padding:2px 0 4px;scrollbar-width:none">
+            <button class="tab" type="button" role="tab" id="t-4-0" aria-controls="p-4-0" aria-selected="true" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--accent);background:var(--accent);color:#FFFFFF;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Content Production</button>
+            <button class="tab" type="button" role="tab" id="t-4-1" aria-controls="p-4-1" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Paid Media</button>
+            <button class="tab" type="button" role="tab" id="t-4-2" aria-controls="p-4-2" aria-selected="false" style="padding:11px 18px;border-radius:var(--radius-pill);border:1px solid var(--tb,rgba(185,190,199,.5));background:transparent;color:var(--text-mid);font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease">Social</button>
+          </div>
+          <div style="display:grid">
+            <div role="tabpanel" id="p-4-0" aria-labelledby="t-4-0" data-tabitem="0" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Film, photography and design produced in batches, so the calendar is full a quarter ahead.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Content Production</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-4-1" aria-labelledby="t-4-1" data-tabitem="1" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Search, social and programmatic managed against one number that matters, not a dashboard of vanity metrics.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Paid Media</span>
+              </a>
+            </div>
+            <div role="tabpanel" id="p-4-2" aria-labelledby="t-4-2" data-tabitem="2" style="grid-area:1/1;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,30px);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .3s ease">
+              <p style="margin:0;max-width:60ch;font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:var(--text-mid)">Always-on channels with a point of view — planning, community and creative that earns the follow.</p>
+              <a class="cta" href="#" style="display:inline-flex;align-items:center;gap:18px;align-self:flex-start;color:var(--text-hi);font-size:clamp(15px,1.1vw,18px);font-weight:500;letter-spacing:-.01em">
+                <span class="dot" style="width:56px;height:56px;flex:none;border-radius:999px;background:#FFFFFF;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+                  <span class="plus" style="position:relative;display:block;width:18px;height:18px;transition:transform .35s cubic-bezier(.2,.7,.2,1)">
+                    <span style="position:absolute;left:0;right:0;top:8px;height:2px;background:var(--panel)"></span>
+                    <span style="position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--panel)"></span>
+                  </span>
+                </span>
+                <span>Explore Social</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true" style="order:var(--media-order);align-self:stretch;display:grid;height:var(--media-h);min-width:0">
+          <div data-tabitem="0" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ shoot day — 4:5 ]</span>
+          </div>
+          <div data-tabitem="1" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ ad creative — 4:5 ]</span>
+          </div>
+          <div data-tabitem="2" style="grid-area:1/1;border-radius:clamp(18px,1.6vw,28px);overflow:hidden;border:1px solid rgba(242,242,242,.09);background-color:var(--panel-alt);background-image:repeating-linear-gradient(135deg,rgba(242,242,242,.06) 0 10px,rgba(242,242,242,0) 10px 20px);display:flex;align-items:flex-end;padding:18px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease">
+            <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:rgba(242,242,242,.62)">[ social grid — 4:5 ]</span>
+          </div>
+        </div>
+      </div>
+      <div data-dim="true" style="position:absolute;inset:0;background:#05070C;opacity:0;pointer-events:none;z-index:5"></div>
+    </article>
+
+  </section>
+
+  <footer data-nav="light" style="position:relative;z-index:6;background:var(--bg-page);padding:clamp(64px,9vh,120px) var(--page-pad);display:flex;flex-wrap:wrap;gap:24px;align-items:baseline;justify-content:space-between">
+    <a href="./hero.dc.html" style="font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:500;letter-spacing:-.03em">← Back: hero + floating nav</a>
+    <p style="margin:0;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,15,28,.5)">Component 02 — stacked panels</p>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F0705E&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#F0705E&quot;,&quot;#C7F06E&quot;,&quot;#7FA1F0&quot;,&quot;#F2F2F2&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;cornerRadius&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:32,&quot;min&quot;:0,&quot;max&quot;:72,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;stickyStack&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Stack motion&quot;},&quot;dimStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.65,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Stack motion&quot;},&quot;panelShrink&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:0,&quot;max&quot;:8,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Stack motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount(){
+    this.rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.raf = null;
+    this.panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(this.tick); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll, { passive: true });
+    this.panels.forEach((p) => this.initTabs(p));
+    this.applyTheme(); this.tick();
+  }
+  componentDidUpdate(){ this.applyTheme(); this.onScroll(); }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  applyTheme(){
+    const s = document.documentElement.style, p = this.props || {};
+    if (p.accent) s.setProperty('--accent', p.accent);
+    if (p.cornerRadius != null) s.setProperty('--radius-xl', p.cornerRadius + 'px');
+    const off = p.stickyStack === false;
+    (this.panels || []).forEach((el) => { el.style.position = off ? 'relative' : 'var(--panel-pos)'; });
+    (this.panels || []).forEach((el) => { this.setActive(el, this.active.get(el) || 0, false); });
+  }
+  tick = () => {
+    this.raf = null;
+    const p = this.props || {};
+    const vh = window.innerHeight || 1;
+    const dim = p.dimStrength != null ? p.dimStrength : 0.65;
+    const shrink = (p.panelShrink != null ? p.panelShrink : 3) / 100;
+    const live = p.stickyStack !== false && window.innerWidth > 1024 && !(this.rm && this.rm.matches);
+    (this.panels || []).forEach((panel, i) => {
+      const next = this.panels[i + 1];
+      let prog = 0;
+      if (next && live){
+        const r = next.getBoundingClientRect();
+        prog = Math.max(0, Math.min(1, (vh - r.top) / vh));
+      }
+      const ov = panel.querySelector('[data-dim]');
+      if (ov) ov.style.opacity = (prog * dim).toFixed(3);
+      panel.style.transform = prog > 0 ? 'scale(' + (1 - shrink * prog).toFixed(4) + ')' : '';
+    });
+  };
+  active = new Map();
+  setActive(panel, idx, focus){
+    const tabs = Array.prototype.slice.call(panel.querySelectorAll('[role="tab"]'));
+    const items = Array.prototype.slice.call(panel.querySelectorAll('[data-tabitem]'));
+    this.active.set(panel, idx);
+    tabs.forEach((t, j) => {
+      const on = j === idx;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      t.style.background = on ? 'var(--accent)' : 'transparent';
+      t.style.color = on ? '#FFFFFF' : 'var(--text-mid)';
+      t.style.borderColor = on ? 'var(--accent)' : 'var(--tb,rgba(185,190,199,.5))';
+    });
+    items.forEach((el) => {
+      const on = Number(el.getAttribute('data-tabitem')) === idx;
+      el.style.opacity = on ? '1' : '0';
+      el.style.transform = on ? 'none' : 'translateY(8px)';
+      el.style.pointerEvents = on ? 'auto' : 'none';
+      if (el.getAttribute('role') === 'tabpanel'){
+        el.setAttribute('aria-hidden', on ? 'false' : 'true');
+        el.inert = !on;
+      }
+    });
+    if (focus && tabs[idx]) tabs[idx].focus({ preventScroll: true });
+  }
+  initTabs(panel){
+    const tabs = Array.prototype.slice.call(panel.querySelectorAll('[role="tab"]'));
+    tabs.forEach((t, j) => {
+      t.addEventListener('click', (e) => { e.preventDefault(); this.setActive(panel, j, false); });
+      t.addEventListener('keydown', (e) => {
+        let n = -1;
+        if (e.key === 'ArrowRight') n = (j + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (j - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        if (n >= 0){ e.preventDefault(); this.setActive(panel, n, true); }
+      });
+    });
+    this.setActive(panel, 0, false);
+  }
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>
